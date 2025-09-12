@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.13.35931.197 d17.13
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ScanFolder", "ScanFolder.csproj", "{5D21710A-EC5B-43BC-8C1D-F46C3F21DFDD}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5D21710A-EC5B-43BC-8C1D-F46C3F21DFDD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5D21710A-EC5B-43BC-8C1D-F46C3F21DFDD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5D21710A-EC5B-43BC-8C1D-F46C3F21DFDD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5D21710A-EC5B-43BC-8C1D-F46C3F21DFDD}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {745469B7-5D9D-4B23-A0E4-E212E4BF0821}
+	EndGlobalSection
+EndGlobal
