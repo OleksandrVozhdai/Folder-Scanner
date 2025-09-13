@@ -227,7 +227,7 @@ namespace ScanFolder
 				FolderNameLabel.Content = "Choose Folder";
 				MyPieChart.Series.Clear();
 				FolderSizeLabel.Content = string.Empty;
-				
+				CreatedDataLabel.Content = string.Empty;
 			});
 		}
 
