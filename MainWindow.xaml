@@ -75,14 +75,14 @@
             <Label Name="CreatedDataLabel" Content="" Height="41" Canvas.Left="53" Canvas.Top="17" Width="364" HorizontalAlignment="Left" VerticalAlignment="Center"/>
         </Canvas>
 
-        <Label Content="Name / Quantity" Margin="10,228,629,137" FontWeight="Bold" Panel.ZIndex="-1"/>
-        <Label Name="FolderSizeLabel" Content="" Margin="324,229,366,136" FontWeight="Bold" Panel.ZIndex="-1"/>
-        <Button Click="OpenFileClick" Content="Open File" HorizontalAlignment="Left" Height="26" Margin="754,10,0,0" VerticalAlignment="Top" Width="132"/>
-        <Button Click ="DeleteFileClick" Content="Delete File" HorizontalAlignment="Left" Height="26" Margin="754,41,0,0" VerticalAlignment="Top" Width="132"/>
+        <Label Content="Name / Quantity" Margin="5,239,634,126" FontWeight="Bold" Panel.ZIndex="-1"/>
+        <Label Name="FolderSizeLabel" Content="" Margin="319,239,371,126" FontWeight="Bold" Panel.ZIndex="-1"/>
+        <Button Click="OpenFileClick" Content="Open file" HorizontalAlignment="Left" Height="26" Margin="754,10,0,0" VerticalAlignment="Top" Width="132"/>
+        <Button Click ="DeleteFileClick" Content="Delete file" HorizontalAlignment="Left" Height="26" Margin="754,41,0,0" VerticalAlignment="Top" Width="132"/>
         <Button Click="OpenFileLocationClick" Content="Open file location" HorizontalAlignment="Left" Height="26" Margin="754,72,0,0" VerticalAlignment="Top" Width="132"/>
         <Button Click="OpenFilePropertiesClick" Content="File properties" HorizontalAlignment="Left" Height="26" Margin="754,134,0,0" VerticalAlignment="Top" Width="132"/>
         <Button Click="RefreshClick" Content="Refresh" HorizontalAlignment="Left" Height="26" Margin="754,196,0,0" VerticalAlignment="Top" Width="132"/>
-        <Button Click="OpenFolderClick" Content="Open Folder Location" HorizontalAlignment="Left" Height="26" Margin="754,103,0,0" VerticalAlignment="Top" Width="132"/>
+        <Button Click="OpenFolderClick" Content="Open folder location" HorizontalAlignment="Left" Height="26" Margin="754,103,0,0" VerticalAlignment="Top" Width="132"/>
         <Button Click="OpenFolderPropertiesClick" Content="Folder properties" HorizontalAlignment="Left" Height="26" Margin="754,165,0,0" VerticalAlignment="Top" Width="132"/>
 
     </Grid>
