@@ -13,11 +13,15 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Microsoft.Win32;
+using System.Net;
+using System.Runtime.InteropServices;
 
 namespace ScanFolder
 {
     public partial class MainWindow : Window
     {
+		[DllImport("Shell32.dll", CharSet = CharSet.Unicode)]
+		public static extern int SHObjectProperties(IntPtr hwnd, uint shopObjectType, string pszPath, string pszPage);
 
 		private string? path = null;
 		private long FolderSize;
@@ -221,6 +225,60 @@ namespace ScanFolder
 				FolderSizeLabel.Content = string.Empty;
 				
 			});
+		}
+
+		private void OpenFileClick(object sender, RoutedEventArgs e)
+		{
+			string? filePath = FileNamesListBox.SelectedItem as string;
+			if (filePath != null)
+				Process.Start(new ProcessStartInfo(filePath) { UseShellExecute = true });
+			else MessageBox.Show("Please choose a file");
+		}
+
+		private void OpenFileLocationClick(object sender, RoutedEventArgs e)
+		{
+			string? filePath = FileNamesListBox.SelectedItem as string;
+			if (filePath != null)
+				Process.Start("explorer.exe",  "/select, " + filePath);
+			else MessageBox.Show("Please choose a file");
+		}
+
+		private void OpenFilePropertiesClick(object sender, RoutedEventArgs e)
+		{
+			string? filePath = FileNamesListBox.SelectedItem as string;
+			if (filePath != null)
+				SHObjectProperties(IntPtr.Zero, 0x2, filePath, null);
+			else MessageBox.Show("Please choose a file");
+		}
+
+		private void DeleteFileClick(object sender, RoutedEventArgs e)
+		{
+			string? filePath = FileNamesListBox.SelectedItem as string;
+			if (filePath != null)
+			{
+				try
+				{
+					MessageBoxResult result = MessageBox.Show(
+						"Do you want to delete this file?",
+						"Confirm Deletion",
+						MessageBoxButton.YesNo,
+						MessageBoxImage.Question
+					);
+					if (result == MessageBoxResult.Yes)
+					{
+						File.Delete(filePath);
+						Clear();
+						Start();
+					}
+					else MessageBox.Show("Cancelled");
+				} catch(Exception ex) 
+				{
+#if DEBUG
+					MessageBox.Show(ex.Message);
+#endif
+				}
+				
+			}
 		}
 	}
 }

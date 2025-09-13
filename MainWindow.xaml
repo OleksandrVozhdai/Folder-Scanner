@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:ScanFolder"
         xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
         mc:Ignorable="d"
-        Title="Folder Scan" Height="450" Width="800" ResizeMode="CanMinimize" Icon="/folicon.png">
+        Title="Folder Scan" Height="450" Width="930" ResizeMode="CanMinimize" Icon="/folicon.png">
     <Window.Resources>
         <Style x:Key="FocusVisual">
             <Setter Property="Control.Template">
@@ -60,9 +60,9 @@
     </Window.Resources>
     <Grid>
 
-        <ListBox Name="FileNamesListBox" Margin="422,10,10,10"/>
-        <ListBox x:Name="FileExtensionListBox" Margin="10,269,383,10"/>
-        <lvc:PieChart Name="MyPieChart" Margin="71,57,444,187"/>
+        <ListBox Name="FileNamesListBox" Margin="422,10,181,10"/>
+        <ListBox x:Name="FileExtensionListBox" Margin="10,269,513,10"/>
+        <lvc:PieChart Name="MyPieChart" Margin="71,57,581,187"/>
         <Canvas Margin="0,0,418,382">
             <Label Name="FolderNameLabel" FontSize="15px" Content="Choose Folder" FontWeight="Bold"  HorizontalContentAlignment="Left" Canvas.Left="53"/>
             <Button Click="FolderButtonClick" Style="{DynamicResource FolderButton}" Height="35" Width="34" Canvas.Left="19" BorderThickness="0" HorizontalAlignment="Left" VerticalAlignment="Top" Cursor="Hand" >
@@ -74,6 +74,10 @@
 
         <Label Content="Name / Quantity" Margin="10,228,629,137" FontWeight="Bold" Panel.ZIndex="-1"/>
         <Label Name="FolderSizeLabel" Content="" Margin="307,229,383,136" FontWeight="Bold" Panel.ZIndex="-1"/>
+        <Button Click="OpenFileClick" Content="Open File" HorizontalAlignment="Left" Height="26" Margin="754,10,0,0" VerticalAlignment="Top" Width="132"/>
+        <Button Click ="DeleteFileClick" Content="Delete File" HorizontalAlignment="Left" Height="26" Margin="754,41,0,0" VerticalAlignment="Top" Width="132"/>
+        <Button Click="OpenFileLocationClick" Content="Open file location" HorizontalAlignment="Left" Height="26" Margin="754,72,0,0" VerticalAlignment="Top" Width="132"/>
+        <Button Click="OpenFilePropertiesClick" Content="File properties" HorizontalAlignment="Left" Height="26" Margin="754,103,0,0" VerticalAlignment="Top" Width="132"/>
 
     </Grid>
 </Window>
