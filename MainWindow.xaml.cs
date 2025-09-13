@@ -76,7 +76,7 @@ namespace ScanFolder
 				FolderSize = FolderSize / 1000;
 				FolderSizeLabel.Content = FolderSize + "Kb";
 			}
-			else FolderSizeLabel.Content = FolderSize + "mb";
+			else FolderSizeLabel.Content = FolderSize + "bytes";
 		}
 
 		public async void Start()
@@ -279,6 +279,12 @@ namespace ScanFolder
 				}
 				
 			}
+		}
+
+		private void RefreshClick(object sender, RoutedEventArgs e)
+		{
+			Clear();
+			Start();
 		}
 	}
 }

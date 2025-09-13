@@ -78,6 +78,7 @@
         <Button Click ="DeleteFileClick" Content="Delete File" HorizontalAlignment="Left" Height="26" Margin="754,41,0,0" VerticalAlignment="Top" Width="132"/>
         <Button Click="OpenFileLocationClick" Content="Open file location" HorizontalAlignment="Left" Height="26" Margin="754,72,0,0" VerticalAlignment="Top" Width="132"/>
         <Button Click="OpenFilePropertiesClick" Content="File properties" HorizontalAlignment="Left" Height="26" Margin="754,103,0,0" VerticalAlignment="Top" Width="132"/>
+        <Button Click="RefreshClick" Content="Refresh" HorizontalAlignment="Left" Height="26" Margin="754,134,0,0" VerticalAlignment="Top" Width="132"/>
 
     </Grid>
 </Window>
