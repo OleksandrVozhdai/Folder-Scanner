@@ -73,6 +73,7 @@
         </Canvas>
 
         <Label Content="Name / Quantity" Margin="10,228,629,137" FontWeight="Bold" Panel.ZIndex="-1"/>
+        <Label Name="FolderSizeLabel" Content="" Margin="307,229,383,136" FontWeight="Bold" Panel.ZIndex="-1"/>
 
     </Grid>
 </Window>

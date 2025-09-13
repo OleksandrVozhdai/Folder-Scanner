@@ -21,21 +21,43 @@ namespace ScanFolder
     {
 
 		private string? path = null;
+		private long FolderSize;
 
 		public MainWindow()
         {
 			InitializeComponent();
 
-
 			Start();
 		}
+
+		/*public void Draw()
+		{
+
+		}*/
 
 		public async void Start()
 		{
 			if (path != null && path.Length > 1)
 			{
 				FolderNameLabel.Content = System.IO.Path.GetFileName(path);
-				await Task.Run(()=>Scan(path));
+				await Task.Run(()=> { Scan(path); FolderSize = GetFolderSize(path); });
+
+				if(FolderSize >= 1_000_000_000)
+				{
+					FolderSize = FolderSize / 1_000_000_000;
+					FolderSizeLabel.Content = FolderSize + "Gb";
+				} else if(FolderSize >= 1_000_000)
+				{
+					FolderSize = FolderSize / 1_000_000;
+					FolderSizeLabel.Content = FolderSize + "Mb";
+				}
+				else if (FolderSize >= 1000)
+				{
+					FolderSize = FolderSize / 1000;
+					FolderSizeLabel.Content = FolderSize + "Kb";
+				} else FolderSizeLabel.Content = FolderSize + "mb";
+
+
 			}
 		}
 
@@ -105,7 +127,11 @@ namespace ScanFolder
 		private void FolderButtonClick(object sender, RoutedEventArgs e)
 		{
 			path = Convert.ToString(GetFolderPath());
-			Start();
+			if (Directory.Exists(path))
+			{
+				Clear();
+				Start();
+			}
 		}
 
 		public string GetFolderPath()
@@ -125,7 +151,49 @@ namespace ScanFolder
 				MessageBox.Show("Error occurred while getting file path");
 				return "";
 			}
+		}
 
+		public long GetFolderSize(string path)
+		{
+			long CurrentFolderSize = 0;
+			if (Directory.Exists(path))
+			{
+				DirectoryInfo folder = new DirectoryInfo(path);
+				CurrentFolderSize = folderSize(folder);
+			}
+			return CurrentFolderSize; 
+		}
+
+		//https://www.geeksforgeeks.org/c-sharp/c-sharp-program-to-estimate-the-size-of-folder/
+		private long folderSize(DirectoryInfo folder)
+		{
+			long totalSizeOfDir = 0;
+
+			// Get all files into the directory
+			FileInfo[] allFiles = folder.GetFiles();
+
+			// Loop through every file and get size of it
+			foreach (FileInfo file in allFiles)
+			{
+				totalSizeOfDir += file.Length;
+			}
+
+			// Find all subdirectories
+			DirectoryInfo[] subFolders = folder.GetDirectories();
+
+			// Loop through every subdirectory and get size of each
+			foreach (DirectoryInfo dir in subFolders)
+			{
+				totalSizeOfDir += folderSize(dir);
+			}
+
+			// Return the total size of folder
+			return totalSizeOfDir;
+		}
+
+		public void Clear()
+		{
+			FileNamesListBox.Items.Clear();
 		}
 	}
 }
