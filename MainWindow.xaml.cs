@@ -301,8 +301,13 @@ namespace ScanFolder
 			view.Filter = item =>
 			{
 				string? text = item.ToString();
-				if(text != null)
+				if(text != null && fileExt != null && fileExt.Length > 0)
 					return text.EndsWith(fileExt);
+				else if(fileExt != null && fileExt.Length <= 0)
+				{
+					string? ext = System.IO.Path.GetExtension(text);
+					return string.IsNullOrEmpty(ext);
+				}
 				else return false;
 			};
 
