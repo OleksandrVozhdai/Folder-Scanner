@@ -1,5 +1,4 @@
 ﻿using LiveCharts.Wpf;
-
 using LiveCharts;
 using System.Diagnostics;
 using System.IO;
@@ -35,6 +34,10 @@ namespace ScanFolder
 
 		public void Draw(List<string> files, Dictionary<string, int> ext)
 		{
+			//Draw Name
+
+			FolderNameLabel.Content = System.IO.Path.GetFileName(path); 
+
 			//Draw Files
 
 			foreach (string fi in files)
@@ -76,17 +79,37 @@ namespace ScanFolder
 		{
 			if (path != null && path.Length > 1)
 			{
-				FolderNameLabel.Content = System.IO.Path.GetFileName(path);
-				await Task.Run(()=> { Scan(path); FolderSize = GetFolderSize(path); });
-				Draw(Files, extL);
+				await Task.Run(()=> {
+					try
+					{
+						Scan(path); 
+						FolderSize = GetFolderSize(path);
+						this.Dispatcher.Invoke(() => { Draw(Files, extL); });
+					}
+					catch (System.UnauthorizedAccessException)
+					{
+						MessageBox.Show("Access denied");
+						Clear();
+						return;
+					}
+					catch (Exception ex)
+					{
+						MessageBox.Show("An unknown error has occurred.");
+						Clear();
+						return;
+					}
+					finally
+					{
+						///
+					}
+				});
 			}
 		}
 
 		public void Scan(string path)
 		{
 			string ext;
-			try
-			{
+			
 				Files = Directory.GetFiles(path, "*.*", SearchOption.AllDirectories).ToList();
 
 				extL = new Dictionary<string, int>();
@@ -104,19 +127,7 @@ namespace ScanFolder
 						extL[ext]++;
 					}
 				}
-			}
-			catch (System.UnauthorizedAccessException)
-			{
-				MessageBox.Show("Access denied");
-			}
-			catch (Exception ex)
-			{
-				MessageBox.Show("An unknown error has occurred.");
-			}
-			finally
-			{
-				///
-			}
+			
 		}
 
 		public void GeneratePieChart(Dictionary<string, int> values)
@@ -198,7 +209,18 @@ namespace ScanFolder
 
 		public void Clear()
 		{
-			FileNamesListBox.Items.Clear();
+			if(FileNamesListBox.Items.Count>0)
+				FileNamesListBox.Items.Clear();
+
+			if (FileExtensionListBox.Items.Count > 0)
+				FileExtensionListBox.Items.Clear();
+
+			this.Dispatcher.Invoke(() => { 
+				FolderNameLabel.Content = "Choose Folder";
+				MyPieChart.Series.Clear();
+				FolderSizeLabel.Content = string.Empty;
+				
+			});
 		}
 	}
 }
