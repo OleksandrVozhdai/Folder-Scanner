@@ -292,7 +292,8 @@ namespace ScanFolder
 		private void FilterFiles(object sender, SelectionChangedEventArgs e)
 		{
 			string? fileExt = FileExtensionListBox.SelectedItem as string;
-			fileExt = fileExt.Split()[0];
+			if (fileExt != null)
+				fileExt = fileExt.Split()[0];
 			CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(FileNamesListBox.Items);
 
 			view.Filter = item =>
