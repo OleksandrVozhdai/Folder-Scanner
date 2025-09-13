@@ -23,6 +23,9 @@ namespace ScanFolder
 		private string? path = null;
 		private long FolderSize;
 
+		List<string> Files;
+		Dictionary<string, int> extL;
+
 		public MainWindow()
         {
 			InitializeComponent();
@@ -30,10 +33,44 @@ namespace ScanFolder
 			Start();
 		}
 
-		/*public void Draw()
+		public void Draw(List<string> files, Dictionary<string, int> ext)
 		{
+			//Draw Files
 
-		}*/
+			foreach (string fi in files)
+			{
+				FileNamesListBox.Items.Add(fi);
+			}
+
+			//Draw Extenions
+
+			foreach (KeyValuePair<string, int> entry in ext)
+			{
+				 FileExtensionListBox.Items.Add(entry.Key + " x" + entry.Value);
+			}
+
+			//Draw piechart
+
+			GeneratePieChart(ext);
+
+			//Draw folder size
+			if (FolderSize >= 1_000_000_000)
+			{
+				FolderSize = FolderSize / 1_000_000_000;
+				FolderSizeLabel.Content = FolderSize + "Gb";
+			}
+			else if (FolderSize >= 1_000_000)
+			{
+				FolderSize = FolderSize / 1_000_000;
+				FolderSizeLabel.Content = FolderSize + "Mb";
+			}
+			else if (FolderSize >= 1000)
+			{
+				FolderSize = FolderSize / 1000;
+				FolderSizeLabel.Content = FolderSize + "Kb";
+			}
+			else FolderSizeLabel.Content = FolderSize + "mb";
+		}
 
 		public async void Start()
 		{
@@ -41,23 +78,7 @@ namespace ScanFolder
 			{
 				FolderNameLabel.Content = System.IO.Path.GetFileName(path);
 				await Task.Run(()=> { Scan(path); FolderSize = GetFolderSize(path); });
-
-				if(FolderSize >= 1_000_000_000)
-				{
-					FolderSize = FolderSize / 1_000_000_000;
-					FolderSizeLabel.Content = FolderSize + "Gb";
-				} else if(FolderSize >= 1_000_000)
-				{
-					FolderSize = FolderSize / 1_000_000;
-					FolderSizeLabel.Content = FolderSize + "Mb";
-				}
-				else if (FolderSize >= 1000)
-				{
-					FolderSize = FolderSize / 1000;
-					FolderSizeLabel.Content = FolderSize + "Kb";
-				} else FolderSizeLabel.Content = FolderSize + "mb";
-
-
+				Draw(Files, extL);
 			}
 		}
 
@@ -66,17 +87,12 @@ namespace ScanFolder
 			string ext;
 			try
 			{
-				List<string> D = Directory.GetFiles(path, "*.*", SearchOption.AllDirectories).ToList();
+				Files = Directory.GetFiles(path, "*.*", SearchOption.AllDirectories).ToList();
 
-				Dictionary<string, int> extL = new Dictionary<string, int>();
+				extL = new Dictionary<string, int>();
 
-
-				foreach (string d in D)
+				foreach (string d in Files)
 				{
-					Debug.WriteLine(d);
-					FileNamesListBox.Dispatcher.Invoke(() => { FileNamesListBox.Items.Add(d); });
-
-
 					ext = System.IO.Path.GetExtension(d);
 
 					if (!extL.ContainsKey(ext))
@@ -88,17 +104,6 @@ namespace ScanFolder
 						extL[ext]++;
 					}
 				}
-
-				foreach (KeyValuePair<string, int> entry in extL)
-				{
-					FileExtensionListBox.Dispatcher.Invoke(() => { FileExtensionListBox.Items.Add(entry.Key + " x" + entry.Value); });
-
-				}
-				this.Dispatcher.Invoke(() =>
-				{
-					GeneratePieChart(extL);
-				});
-
 			}
 			catch (System.UnauthorizedAccessException)
 			{
