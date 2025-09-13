@@ -15,6 +15,8 @@ using System.Windows.Shapes;
 using Microsoft.Win32;
 using System.Net;
 using System.Runtime.InteropServices;
+using System.Collections.ObjectModel;
+using System;
 
 namespace ScanFolder
 {
@@ -285,6 +287,24 @@ namespace ScanFolder
 		{
 			Clear();
 			Start();
+		}
+
+		private void FilterFiles(object sender, SelectionChangedEventArgs e)
+		{
+			string? fileExt = FileExtensionListBox.SelectedItem as string;
+			fileExt = fileExt.Split()[0];
+			CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(FileNamesListBox.Items);
+
+			view.Filter = item =>
+			{
+				string? text = item.ToString();
+				if(text != null)
+					return text.EndsWith(fileExt);
+				else return false;
+			};
+
+			
+			view.Refresh();
 		}
 	}
 }

@@ -61,7 +61,7 @@
     <Grid>
 
         <ListBox Name="FileNamesListBox" Margin="422,10,181,10"/>
-        <ListBox x:Name="FileExtensionListBox" Margin="10,269,513,10"/>
+        <ListBox x:Name="FileExtensionListBox" SelectionChanged="FilterFiles" Margin="10,269,513,10"/>
         <lvc:PieChart Name="MyPieChart" Margin="71,57,581,187"/>
         <Canvas Margin="0,0,418,382">
             <Label Name="FolderNameLabel" FontSize="15px" Content="Choose Folder" FontWeight="Bold"  HorizontalContentAlignment="Left" Canvas.Left="53"/>
