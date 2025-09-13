@@ -42,7 +42,9 @@ namespace ScanFolder
 		{
 			//Draw Name
 
-			FolderNameLabel.Content = System.IO.Path.GetFileName(path); 
+			FolderNameLabel.Content = System.IO.Path.GetFileName(path);
+			CreatedDataLabel.Content = "Created " + File.GetCreationTime(path) + " | Last change " + File.GetLastWriteTime(path);
+			
 
 			//Draw Files
 

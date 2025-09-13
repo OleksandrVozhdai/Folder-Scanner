@@ -45,8 +45,8 @@
                             <Trigger Property="IsDefaulted" Value="true">
                                 <Setter Property="BorderBrush" TargetName="border" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"/>
                             </Trigger>
-                            
-                          
+
+
                             <Trigger Property="IsEnabled" Value="false">
                                 <Setter Property="Background" TargetName="border" Value="{StaticResource Button.Disabled.Background}"/>
                                 <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.Disabled.Border}"/>
@@ -70,10 +70,11 @@
                     <ImageBrush ImageSource="/folder.png"/>
                 </Button.Background>
             </Button>
+            <Label Name="CreatedDataLabel" Content="" Height="41" Canvas.Left="53" Canvas.Top="17" Width="364" HorizontalAlignment="Left" VerticalAlignment="Center"/>
         </Canvas>
 
         <Label Content="Name / Quantity" Margin="10,228,629,137" FontWeight="Bold" Panel.ZIndex="-1"/>
-        <Label Name="FolderSizeLabel" Content="" Margin="307,229,383,136" FontWeight="Bold" Panel.ZIndex="-1"/>
+        <Label Name="FolderSizeLabel" Content="" Margin="324,229,366,136" FontWeight="Bold" Panel.ZIndex="-1"/>
         <Button Click="OpenFileClick" Content="Open File" HorizontalAlignment="Left" Height="26" Margin="754,10,0,0" VerticalAlignment="Top" Width="132"/>
         <Button Click ="DeleteFileClick" Content="Delete File" HorizontalAlignment="Left" Height="26" Margin="754,41,0,0" VerticalAlignment="Top" Width="132"/>
         <Button Click="OpenFileLocationClick" Content="Open file location" HorizontalAlignment="Left" Height="26" Margin="754,72,0,0" VerticalAlignment="Top" Width="132"/>
