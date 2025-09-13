@@ -314,5 +314,18 @@ namespace ScanFolder
 			
 			view.Refresh();
 		}
+
+		private void OpenFolderClick(object sender, RoutedEventArgs e)
+		{
+			if (path != null)
+				Process.Start("explorer.exe", "/select, " + path);
+		}
+
+		private void OpenFolderPropertiesClick(object sender, RoutedEventArgs e)
+		{
+			if (path != null)
+				SHObjectProperties(IntPtr.Zero, 0x2, path, null);
+			
+		}
 	}
 }

@@ -46,7 +46,9 @@
                                 <Setter Property="BorderBrush" TargetName="border" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"/>
                             </Trigger>
 
-
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <Setter Property="Opacity" Value="0.6"/>
+                            </Trigger>
                             <Trigger Property="IsEnabled" Value="false">
                                 <Setter Property="Background" TargetName="border" Value="{StaticResource Button.Disabled.Background}"/>
                                 <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.Disabled.Border}"/>
@@ -65,7 +67,7 @@
         <lvc:PieChart Name="MyPieChart" Margin="71,57,581,187"/>
         <Canvas Margin="0,0,418,382">
             <Label Name="FolderNameLabel" FontSize="15px" Content="Choose Folder" FontWeight="Bold"  HorizontalContentAlignment="Left" Canvas.Left="53"/>
-            <Button Click="FolderButtonClick" Style="{DynamicResource FolderButton}" Height="35" Width="34" Canvas.Left="19" BorderThickness="0" HorizontalAlignment="Left" VerticalAlignment="Top" Cursor="Hand" >
+            <Button Click="FolderButtonClick" Style="{DynamicResource FolderButton}" Height="36" Width="34" Canvas.Left="19" BorderThickness="0" HorizontalAlignment="Center" VerticalAlignment="Top" Cursor="Hand" Canvas.Top="2" >
                 <Button.Background>
                     <ImageBrush ImageSource="/folder.png"/>
                 </Button.Background>
@@ -78,8 +80,10 @@
         <Button Click="OpenFileClick" Content="Open File" HorizontalAlignment="Left" Height="26" Margin="754,10,0,0" VerticalAlignment="Top" Width="132"/>
         <Button Click ="DeleteFileClick" Content="Delete File" HorizontalAlignment="Left" Height="26" Margin="754,41,0,0" VerticalAlignment="Top" Width="132"/>
         <Button Click="OpenFileLocationClick" Content="Open file location" HorizontalAlignment="Left" Height="26" Margin="754,72,0,0" VerticalAlignment="Top" Width="132"/>
-        <Button Click="OpenFilePropertiesClick" Content="File properties" HorizontalAlignment="Left" Height="26" Margin="754,103,0,0" VerticalAlignment="Top" Width="132"/>
-        <Button Click="RefreshClick" Content="Refresh" HorizontalAlignment="Left" Height="26" Margin="754,134,0,0" VerticalAlignment="Top" Width="132"/>
+        <Button Click="OpenFilePropertiesClick" Content="File properties" HorizontalAlignment="Left" Height="26" Margin="754,134,0,0" VerticalAlignment="Top" Width="132"/>
+        <Button Click="RefreshClick" Content="Refresh" HorizontalAlignment="Left" Height="26" Margin="754,196,0,0" VerticalAlignment="Top" Width="132"/>
+        <Button Click="OpenFolderClick" Content="Open Folder Location" HorizontalAlignment="Left" Height="26" Margin="754,103,0,0" VerticalAlignment="Top" Width="132"/>
+        <Button Click="OpenFolderPropertiesClick" Content="Folder properties" HorizontalAlignment="Left" Height="26" Margin="754,165,0,0" VerticalAlignment="Top" Width="132"/>
 
     </Grid>
 </Window>
